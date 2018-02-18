@@ -15,3 +15,6 @@ def palindrom(s):
 s= 'abyba'
 print palindrom(s)
 
+
+
+

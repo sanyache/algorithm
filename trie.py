@@ -36,10 +36,30 @@ class Trie:
         else:
             rez = 'No'
         return rez
-
+    def get_trie(self):
+        visitList = []
+        dict_word = []
+        letter= ''
+        stack = [self.root]
+        while stack:
+            cur = stack.pop()
+            if cur == -1:
+                letter = letter[:-1]
+                continue
+            if cur.data != None:
+                letter += cur.data
+                stack.append(-1)
+            for char,nod in cur.children.items():
+                stack.append(nod)
+            if cur.is_word:
+                dict_word.append(letter)
+            visitList.append(cur.data)
+        return dict_word
 trie = Trie()
 words = 'foo foobar foot footer bo boss'
 for word in words.split():
     trie.add(word)
 
-print(trie.his_word('bo'))
+print(trie.his_word('bar'))
+print trie.get_trie()
+
